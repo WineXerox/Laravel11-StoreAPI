@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'L5 Swagger UI',
+                'title' => 'Laravel 11 Store API with Sanctum',
             ],
 
             'routes' => [
@@ -153,6 +153,12 @@ return [
         */
         'securityDefinitions' => [
             'securitySchemes' => [
+                // 'bearer_token' => [ // Unique name of security
+                //     'type' => 'apiKey', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".
+                //     'description' => 'Sanctum security laravel',
+                //     'name' => 'Authorization', // The name of the header or query parameter to be used.
+                //     'in' => 'header', // The location of the API key. Valid values are "query" or "header".
+                // ],
                 /*
                  * Examples of Security schemes
                 */
@@ -191,13 +197,17 @@ return [
                         ],
                     ],
                 ],
-                'sanctum' => [ // Unique name of security
+
+                'sanctum' => [
                     'type' => 'apiKey', // Valid values are "basic", "apiKey" or "oauth2".
                     'description' => 'Enter token in format (Bearer <token>)',
+                    'scheme' => 'bearer',
+                    'bearerFormat' => 'JWT',
                     'name' => 'Authorization', // The name of the header or query parameter to be used.
                     'in' => 'header', // The location of the API key. Valid values are "query" or "header".
                 ],
                 */
+
             ],
             'security' => [
                 /*
@@ -263,7 +273,7 @@ return [
                  * 'full' (expands the tags and operations),
                  * 'none' (expands nothing).
                  */
-                'doc_expansion' => env('L5_SWAGGER_UI_DOC_EXPANSION', 'none'),
+                'doc_expansion' => env('L5_SWAGGER_UI_DOC_EXPANSION', 'list'),
 
                 /**
                  * If set, enables filtering. The top bar will show an edit box that
